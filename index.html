@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid Networks is becoming Complete</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --complete-dark: #0f1115;
+            --fluid-green: #8cc63f;
+            --complete-blue: #3b82f6;
+            
+            /* TIMING CONFIGURATION - Matches JS below */
+            --total-duration: 12s;
+            --fade-start-delay: 2.5s;
+            --fade-duration: 3s;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body, html { 
+            height: 100%; 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; 
+            background: var(--complete-dark);
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* --- IFRAME LAYERS --- */
+        .layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* LAYER 1: NEW SITE (Behind) */
+        .layer-new-site {
+            z-index: 1;
+            background: white;
+        }
+
+        /* LAYER 2: OLD SITE (Front - Fades Out) */
+        .layer-old-site {
+            z-index: 2;
+            background: white;
+            animation: fadeOutSite var(--fade-duration) ease-in-out forwards;
+            animation-delay: var(--fade-start-delay);
+        }
+
+        /* --- OVERLAY --- */
+        .overlay-mask {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.4); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* --- CARD STYLES --- */
+        .white-card {
+            width: 90%;
+            max-width: 650px;
+            background: #ffffff;
+            color: #1a202c;
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            
+            opacity: 0;
+            transform: translateY(20px);
+            animation: floatIn 0.8s ease-out 0.2s forwards;
+        }
+
+        .primary-msg {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        /* LOGO IMAGE STYLE */
+        .brand-logo-img {
+            height: 1.2em;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        .supporting-msg {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .info-pill {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #166534;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border: 1px solid #bbf7d0;
+        }
+
+        .about-text {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.6;
+            padding-top: 25px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* Progress Bar */
+        .progress-wrapper {
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            margin-top: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--fluid-green);
+            width: 0%;
+            animation: loadProgress var(--total-duration) linear forwards;
+        }
+
+        .manual-link {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .manual-link:hover { color: #fff; text-decoration: underline; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeOutSite {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes floatIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes loadProgress {
+            to { width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .primary-msg { font-size: 1.6rem; }
+            .white-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <iframe src="https://complete.net" class="layer layer-new-site"></iframe>
+
+        <iframe src="https://fluidnets.com" class="layer layer-old-site"></iframe>
+
+        <div class="overlay-mask">
+            <div class="white-card">
+                <div class="info-pill">Update in Progress</div>
+                
+                <div class="primary-msg">
+                    Fluid Networks is evolving to become your<br>
+                    <img src="imgi_52_68280563d205a126f304b22b_Complete_Logo_Dark.png" alt="Complete" class="brand-logo-img"> 
+                    IT provider!
+                </div>
+                
+                <div class="supporting-msg">
+                    We’re upgrading your experience—redirecting you now.
+                </div>
+
+                <div class="about-text">
+                    We are evolving into Complete, bringing expanded coverage across Managed IT, Cybersecurity, Compliance, and Cloud.
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+
+            <a href="#" onclick="manualRedirect(); return false;" class="manual-link">
+                Not redirected? Click here.
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURATION
+        const DESTINATION_URL = "https://complete.net"; 
+        const REDIRECT_DELAY = 12000; // 12 seconds
+
+        function manualRedirect() {
+            window.location.href = DESTINATION_URL;
+        }
+
+        // Auto-redirect
+        setTimeout(manualRedirect, REDIRECT_DELAY);
+    </script>
+</body>
+</html>
